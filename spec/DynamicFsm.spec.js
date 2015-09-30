@@ -847,6 +847,31 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.transition("go",{item:"item"});
 					fsm.transition("ready");
 					eventResult.data.item.should.equal("item");
+				};
+				if("should have data at handler"){
+					var eventResult = {};
+					var fsm = fsmFactory.instanceWithOptions();
+					fsm.on("handler-data-accepted", function(data ) {
+						eventResult = { data: data };
+					} );
+					fsm.state.should.equal( "uninitialized" );
+					fsm.handle("start");
+					fsm.transition("go",{item:"item"});
+					fsm.handle("letsDoThis");
+					eventResult.data.item.should.equal("item");
+				}
+				if("should have data at _onEnter when executed through handle"){
+					var eventResult = {};
+					var fsm = fsmFactory.instanceWithOptions();
+					fsm.on("enter-data-accepted", function(data ) {
+						eventResult = { data: data };
+					} );
+					fsm.state.should.equal( "uninitialized" );
+					fsm.handle("start");
+					fsm.handle("letsDoThis",{item:"item1"});
+					fsm.transition("go");
+
+					//eventResult.data.item.should.equal("item1");
 				}
 			});
 			if ( fsmFactory.extendingWithStaticProps ) {

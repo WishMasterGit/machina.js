@@ -49,6 +49,7 @@ var DynamicFsm = {
 				this.pendingDelegations[ inputDef.ticket ] = { delegatedTo: child.namespace };
 				// WARNING - returning a value from `handle` on child FSMs is not really supported.
 				// If you need to return values from child FSM input handlers, use events instead.
+				args.push(stateObj._data);
 				result = child.handle.apply( child, args );
 			} else {
 				if ( inputDef.ticket && this.pendingDelegations[ inputDef.ticket ] ) {
@@ -68,10 +69,11 @@ var DynamicFsm = {
 				} else {
 					this.emit( HANDLING, eventPayload );
 					if ( typeof handler === "function" ) {
-						result = handler.apply( this, this.getHandlerArgs( args, isCatchAll ) );
+						args.push(stateObj._data);
+						result = handler.apply( this, this.getHandlerArgs( args, isCatchAll ));
 					} else {
 						result = handler;
-						this.transition( client, handler, input);
+						this.transition(client, handler, input);
 					}
 					this.emit( HANDLED, eventPayload );
 				}

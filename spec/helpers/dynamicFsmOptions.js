@@ -23,10 +23,11 @@ module.exports = {
 			},
 			go: {
 				_onEnter: function(fsm,data) {
+					console.log(data);
 					this.emit( "enter-data-accepted",data );
 				},
-				letsDoThis: function() {
-					this.emit( "WeAreDoingThis", { someprop: "someval" } );
+				letsDoThis: function(data) {
+					this.emit( "handler-data-accepted", data );
 				},
 				_onExit: function(fsm,data) {
 					this.emit( "exit-data-accepted",data );
