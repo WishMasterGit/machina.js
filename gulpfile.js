@@ -79,7 +79,7 @@ gulp.task( "server", [ "combine", "report" ], function() {
 } );
 
 gulp.task( "test", function() {
-	return gulp.src( [ "spec/**/*.spec.js" ], { read: false } )
+	return gulp.src( [ "spec/**/DynamicFsm.spec.js" ], { read: false } )
 		.pipe( mocha( {
 			require: [ "spec/helpers/node-setup.js" ],
 			reporter: "spec",

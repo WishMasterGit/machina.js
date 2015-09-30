@@ -5,6 +5,7 @@ var Fsm = {
 		BehavioralFsm.apply( this, arguments );
 		this.ensureClientMeta();
 	},
+
 	initClient: function initClient() {
 		var initialState = this.initialState;
 		if ( !initialState ) {
@@ -73,5 +74,5 @@ _.each( [
 		return BehavioralFsm.prototype[methodWithClientInjected].apply( this, args );
 	};
 } );
- 
+
 Fsm = BehavioralFsm.extend( Fsm );

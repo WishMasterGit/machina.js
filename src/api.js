@@ -3,6 +3,7 @@
 var machina = _.merge( emitter, {
 	Fsm: Fsm,
 	BehavioralFsm: BehavioralFsm,
+	DynamicFsm:DynamicFsm,
 	utils: utils,
 	eventListeners: {
 		newFsm: []
