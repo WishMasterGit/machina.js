@@ -825,7 +825,7 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 				} );
 			} );
 			describe("When passing data",function(){
-				if("should have data in _onEnter event"){
+				it("should have data in _onEnter event",function(){
 					var eventResult = {};
 					var fsm = fsmFactory.instanceWithOptions();
 					fsm.on("enter-data-accepted", function( data ) {
@@ -835,8 +835,8 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.handle("start");
 					fsm.transition("go",{item:"item"});
 					eventResult.data.item.should.equal("item");
-				};
-				if("should have data in _onExit event"){
+				});
+				it("should have data in _onExit event",function(){
 					var eventResult = {};
 					var fsm = fsmFactory.instanceWithOptions();
 					fsm.on("exit-data-accepted", function(data ) {
@@ -847,8 +847,8 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.transition("go",{item:"item"});
 					fsm.transition("ready");
 					eventResult.data.item.should.equal("item");
-				};
-				if("should have data at handler"){
+				});
+				it("should have data at handler",function(){
 					var eventResult = {};
 					var fsm = fsmFactory.instanceWithOptions();
 					fsm.on("handler-data-accepted", function(data ) {
@@ -859,8 +859,8 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.transition("go",{item:"item"});
 					fsm.handle("letsDoThis");
 					eventResult.data.item.should.equal("item");
-				}
-				if("should have data at _onEnter when executed through handle"){
+				});
+				it("should have data at _onEnter when executed through handle",function(){
 					var eventResult = {};
 					var fsm = fsmFactory.instanceWithOptions();
 					fsm.on("enter-data-accepted", function(data ) {
@@ -872,7 +872,7 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.transition("go");
 
 					//eventResult.data.item.should.equal("item1");
-				}
+				});
 			});
 			if ( fsmFactory.extendingWithStaticProps ) {
 				describe( "When adding static props", function() {

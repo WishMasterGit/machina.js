@@ -23,7 +23,6 @@ module.exports = {
 			},
 			go: {
 				_onEnter: function(fsm,data) {
-					console.log(data);
 					this.emit( "enter-data-accepted",data );
 				},
 				letsDoThis: function(data) {
