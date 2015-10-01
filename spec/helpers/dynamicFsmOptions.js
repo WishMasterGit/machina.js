@@ -22,13 +22,13 @@ module.exports = {
 				}
 			},
 			go: {
-				_onEnter: function(fsm,data) {
+				_onEnter: function(data) {
 					this.emit( "enter-data-accepted",data );
 				},
 				letsDoThis: function(data) {
 					this.emit( "handler-data-accepted", data );
 				},
-				_onExit: function(fsm,data) {
+				_onExit: function(data) {
 					this.emit( "exit-data-accepted",data );
 				}
 			}

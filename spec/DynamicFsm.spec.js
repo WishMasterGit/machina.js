@@ -868,9 +868,8 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					} );
 					fsm.state.should.equal( "uninitialized" );
 					fsm.handle("start");
-					fsm.handle("letsDoThis",{item:"item1"});
+					fsm.handle("letsDoThis",{item:"item1"},{item:"item1"});
 					fsm.transition("go");
-
 					//eventResult.data.item.should.equal("item1");
 				});
 			});

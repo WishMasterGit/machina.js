@@ -98,7 +98,7 @@ var DynamicFsm = {
 
 				if ( curStateObj && curStateObj._onExit ) {
 					clientMeta.inExitHandler = true;
-					curStateObj._onExit.call( this, client, curStateObj._data);
+					curStateObj._onExit.call( this, curStateObj._data, client);
 					clientMeta.inExitHandler = false;
 				}
 				if(curStateObj)
@@ -122,7 +122,7 @@ var DynamicFsm = {
 				this.emit( TRANSITION, eventPayload );
 				if ( newStateObj._onEnter ) {
 
-					newStateObj._onEnter.call( this, client, data);
+					newStateObj._onEnter.call( this, data, client);
 					newStateObj._data = data;
 				}
 				if ( child ) {
