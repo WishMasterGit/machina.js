@@ -872,6 +872,18 @@ function runDynamicFsmSpec( description, fsmFactory ) {
 					fsm.transition("go");
 					//eventResult.data.item.should.equal("item1");
 				});
+				it("should have data at _onExit event if _onEnter not defined",function(){
+					var eventResult = {};
+					var fsm = fsmFactory.instanceWithOptions();
+					fsm.on("exit-data-accepted", function(data ) {
+						eventResult = { data: data };
+					} );
+					fsm.state.should.equal( "uninitialized" );
+					fsm.handle("start");
+					fsm.transition("goAgain",{item:"item"});
+					fsm.transition("ready");
+					eventResult.data.item.should.equal("item");
+				});
 			});
 			if ( fsmFactory.extendingWithStaticProps ) {
 				describe( "When adding static props", function() {

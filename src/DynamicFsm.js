@@ -96,6 +96,7 @@ var DynamicFsm = {
 					child = newStateObj._child && newStateObj._child.instance;
 				}
 
+
 				if ( curStateObj && curStateObj._onExit ) {
 					clientMeta.inExitHandler = true;
 					curStateObj._onExit.call( this, curStateObj._data, client);
@@ -124,6 +125,14 @@ var DynamicFsm = {
 
 					newStateObj._onEnter.call( this, data, client);
 					newStateObj._data = data;
+				}
+				else if(data)
+				{
+					newStateObj._data = data;
+				}
+				else if(curStateObj && curStateObj._data)
+				{
+					newStateObj._data = curStateObj._data
 				}
 				if ( child ) {
 					child.handle( client, "_reset" );

@@ -31,6 +31,14 @@ module.exports = {
 				_onExit: function(data) {
 					this.emit( "exit-data-accepted",data );
 				}
+			},
+			goAgain: {
+				letsDoThis: function(data) {
+					this.emit( "handler-data-accepted", data );
+				},
+				_onExit: function(data) {
+					this.emit( "exit-data-accepted",data );
+				}
 			}
 		}
 	},
